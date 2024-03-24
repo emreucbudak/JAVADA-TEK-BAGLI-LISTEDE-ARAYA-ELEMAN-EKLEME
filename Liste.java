@@ -42,10 +42,73 @@ public class Liste {
 		tail = eleman1;
 		
 	}
-	void araEkle(int x) {
+	void basSil() {
+		if (head ==null) {
+			System.out.println("Listen Boş Kanka");
+		}
+		else if (head.next == null) {
+			head = null;
+			tail = null;
+			System.out.println("Eleman Silindi!");
+		}
+		else {
+			head = head.next;
+			System.out.println("Baştaki Elemanı Sildim!");
+		}
+	}
+	void sonSil() {
+		if (head ==null ) {
+			System.out.println("Listen Boş Kanka");
+		}
+		else if (head.next == null) {
+			head = null;
+			System.out.println("Tek Eleman Silindi");
+		}
+		else {
+			tail = null;
+			head.next = null;
+			System.out.println("Sondaki Eleman Silindi");
+		}
+	}
+	void araSil() {
+		if (head.next == null) {
+			System.out.println("Listende Arada eleman kalmamış!");
+		}
+		else if (head.next == tail) {
+			System.out.println("Listende arada eleman kalmamış!");
+		}
+		else {
+			head.next = tail;
+			System.out.print("Listenin arasındaki eleman başarıyla silindi kanka");
+		}
+	}
+	void araEkle (int x , int y) {
 		Bagli eleman2 = new Bagli();
 		eleman2.veri = x;
-		head.next = eleman2;
-		eleman2.next = tail;
+		if (head == null && tail == null) {
+			head = eleman2;
+			head.next = null;
+			System.out.println("Listen Boş oldugundan eleman başa eklendi!");
+		}
+		else if (head != null && tail == null) {
+			tail = eleman2;
+			eleman2.next = null;
+			System.out.println("Listende tek bir eleman oldugu icin sona eklendi!");
+		}
+		else {
+			int a = 0;
+			Bagli ref = head;
+			Bagli ref2 = head;
+			while (a<y) {
+				System.out.println("Eleman Sırası Aranıyor!");
+				a++;
+				ref2 = ref;
+				ref = ref.next;
+			}
+			if (a==y) {
+				ref2.next = eleman2;
+				eleman2.next = ref;
+			}
+		}
 	}
 }
